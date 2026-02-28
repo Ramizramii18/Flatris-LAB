@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Use Node.js 10'
+
+- script: |
+    node -v
+    npm -v
+  displayName: 'Verify versions'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'Install & build Flatris'
